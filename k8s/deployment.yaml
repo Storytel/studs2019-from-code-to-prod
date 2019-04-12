@@ -1,0 +1,28 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: studs2019
+spec:
+  replicas: 1 # Number of instances of Application
+  revisionHistoryLimit: 3
+  minReadySeconds: 10
+  template:
+    metadata:
+      labels:
+        app: studs2019 # Name of the application
+    spec:
+      imagePullSecrets:
+        - name: dockerhub
+      containers:
+        - name: studs2019
+          image: storytel/studs2019:latest # What Docker image is used
+          imagePullPolicy: Always
+          resources:
+            limits:
+              memory: 160M
+              cpu: 400m
+            requests:
+              memory: 128M
+              cpu: 50m
+          ports:
+            - containerPort: 8080

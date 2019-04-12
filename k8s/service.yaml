@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: studs2019-lb
+  name: studs2019-lb
+spec:
+  ports:
+    - port: 80
+      targetPort: 8080 # The port it should route traffic to
+  selector:
+    app: studs2019 # Name of the application to connect to
+  type: LoadBalancer
